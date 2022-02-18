@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">SurveyApp_FragmentVer</string>
+    <string name="start_survey">Survey Question</string>
+    <string name="question_hint">Enter question to survey.</string>
+    <string name="place_holder_text">Place Holder Question</string>
+    <string name="yes_button_text">Yes</string>
+    <string name="no_button_text">No</string>
+    <string name="restart_button_text">New Survey</string>
+    <string name="show_result_button_text">Show Results</string>
+    <string name="result_text_view">Results</string>
+    <string name="yes_header">Yes Answers</string>
+    <string name="no_header">No Answers</string>
+    <string name="reset_button_text">Reset Answers</string>
+    <string name="continue_survey_button_text">Continue Survey</string>
+</resources>

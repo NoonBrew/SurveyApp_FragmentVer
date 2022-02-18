@@ -47,7 +47,7 @@ class Survey() : ViewModel() {
         noAnswers = 0
         surveyQuestion = ""
     }
-
+    // Just resets the numbers for our survey -- Used by the results fragment.
     fun resetSurvey () {
         yesAnswers = 0
         noAnswers = 0

@@ -8,7 +8,8 @@ import android.widget.Button
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-
+// these strings could be anything, we use the package name plus extras to make them unique even
+// to other apps.
 const val SHOW_SURVEY_RESULTS = "com.example.surveyapp_fragmentver.SurveyFragment.ShowResults"
 const val START_NEW_SURVEY = "com.example.surveyapp_fragmentver.SurveyFragment.StartNew"
 class SurveyFragment: Fragment() {
@@ -29,6 +30,7 @@ class SurveyFragment: Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        // Inflates our layout view.
         val view = inflater.inflate(R.layout.fragment_survey, container, false)
 
         yesButton = view.findViewById(R.id.yes_button)
@@ -38,7 +40,7 @@ class SurveyFragment: Fragment() {
         questionDisplay = view.findViewById(R.id.question_display_textView)
 
         questionDisplay.text = surveyViewModel.retrieveQuestion()
-
+        // Yes and no button listeners call our surveyViewModels methods to add values to yes or no.
         yesButton.setOnClickListener {
             surveyViewModel.addYes()
         }
@@ -46,13 +48,15 @@ class SurveyFragment: Fragment() {
         noButton.setOnClickListener {
             surveyViewModel.addNo()
         }
-
+        // New Survey calls our surveyViewModel method to clear the data in the view model
         newSurvey.setOnClickListener {
             surveyViewModel.clearForNewSurvey()
+            // We then ask main activity to read our key and open the QuestionPromptFragment
             parentFragmentManager.setFragmentResult(START_NEW_SURVEY, Bundle.EMPTY)
         }
 
         showResults.setOnClickListener {
+            // Asks main activity to read our key and launch the ResultsFragment
             parentFragmentManager.setFragmentResult(SHOW_SURVEY_RESULTS, Bundle.EMPTY)
         }
 

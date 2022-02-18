@@ -19,7 +19,7 @@ class QuestionPromptFragment: Fragment() {
 
     private  lateinit var startSurveyButton: Button
     private lateinit var surveyQuestion: EditText
-
+    // Creates our view model we have to use require activity to instantiate it.
     private val surveyViewModel: Survey by lazy {
         ViewModelProvider(requireActivity()).get(Survey::class.java)
     }
@@ -36,10 +36,13 @@ class QuestionPromptFragment: Fragment() {
         surveyQuestion = view.findViewById(R.id.survey_question)
 
         startSurveyButton.setOnClickListener {
+            // Stores our question and writes it to our view model
             val questionToAsk = surveyQuestion.text.toString()
             surveyViewModel.storeQuestion(questionToAsk)
-
+            // Checks that their is a question.
             if(questionToAsk.isNotBlank()){
+                // IF there is a question we tell our main activity to read our key and launch
+                // the corresponding fragment.
                 parentFragmentManager.setFragmentResult(SURVEY_QUESTION_MADE, Bundle.EMPTY)
             } else {
                 Toast.makeText(activity, "Please enter a question to ask.", Toast.LENGTH_SHORT).show()
@@ -48,7 +51,9 @@ class QuestionPromptFragment: Fragment() {
 
         return view
     }
-
+    // Got this code from the book. It creates an on start listener that maintains the text entered
+    // the Question EditText and restores it. This is useful if a user rotates their phone while
+    // writing their question it won't be lost.
     override fun onStart() {
         super.onStart()
 
@@ -85,7 +90,8 @@ class QuestionPromptFragment: Fragment() {
          * Use this factory method to create a new instance of
          * this fragment using the provided parameters.
          */
-
+        // From the videos we just need to instantiate a new instance of our fragment since
+        // we are reading data from the view model.
         @JvmStatic
         fun newInstance() = QuestionPromptFragment()
     }
